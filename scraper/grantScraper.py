@@ -78,7 +78,7 @@ def get_all_grant_links():
         links = list(set(links))
         
         print(f">>> Found {len(links)} unique grant links.")
-        return links, driver
+        return links[0:2], driver
         
     except Exception as e:
         print(f"Browser Error: {e}")
@@ -196,7 +196,7 @@ def main():
     if relevant_grants:
         df = pd.DataFrame(relevant_grants)
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"output/Gemini_Grant_Report_{timestamp}.xlsx"
+        filename = f"scraper/output/Gemini_Grant_Report_{timestamp}.xlsx"
         df.to_excel(filename, index=False)
         print(f"\n\n>>> SUCCESS! Found {len(relevant_grants)} grants. Saved to '{filename}'.")
     else:
